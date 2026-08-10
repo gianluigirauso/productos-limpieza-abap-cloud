@@ -1,0 +1,27 @@
+managed implementation in class zbp_i_productos_limpieza unique;
+//strict ( 2 );
+
+define behavior for ZI_PRODUCTOS_LIMPIEZA //_behavior_name
+persistent table zlimpieza_prod
+lock master
+// authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+validation validarStock on save { create; update; field Stock; }
+
+  mapping for zlimpieza_prod
+  {
+    ProdId = prod_id;
+    Nombre = nombre;
+    Marca = marca;
+    Precio = precio;
+    Moneda = moneda;
+    Stock = stock;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+}
